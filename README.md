@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Conclusión Profesional - Estudio de Productividad Textil</title>
-</head>
-<body>
-
 <h1>📌 Conclusión Profesional del Estudio</h1>
 
 <p>
