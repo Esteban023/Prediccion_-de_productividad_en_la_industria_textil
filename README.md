@@ -1,82 +1,25 @@
-# Prediccion_-de_productividad_en_la_industria_textil
-Este script implementa un pipeline completo de Machine Learning para predecir la productividad real (actual_productivity) de trabajadores en la industria textil, utilizando datos operativos de producción.
+📌 Conclusión Profesional del Estudio
+El presente análisis tuvo como objetivo modelar la productividad real (actual_productivity) en dos departamentos clave de una planta textil: Sweing (costura) y Finishing (acabado). Se implementaron y compararon dos enfoques de machine learning —Gradient Boosting Regressor (GBR) y Redes Neuronales (NN)— con el fin de identificar el modelo más adecuado para cada área operativa.
 
-⚙️ Flujo general del sistema
-1. Carga y preparación de datos
-Se carga el dataset garments_worker_productivity.csv.
-Se divide el problema en dos subconjuntos:
-Sewing (costura)
-Finishing (acabado)
+🧵 Departamento de Sweing (Costura)
+Los resultados obtenidos en el departamento de Sweing fueron altamente satisfactorios. Ambos modelos lograron capturar eficazmente la variabilidad subyacente de los datos, evidenciado por métricas de desempeño sólidas y estables:
 
-Cada uno tiene su propio proceso de feature engineering.
+Gradient Boosting Regressor demostró un excelente equilibrio entre sesgo y varianza, con alta capacidad predictiva y buena generalización.
 
-2. Feature Engineering (Ingeniería de características)
+Red Neuronal también alcanzó un rendimiento competitivo, aunque con una ligera mayor sensibilidad a la configuración de hiperparámetros y al preprocesamiento.
 
-Se crean variables derivadas relevantes para mejorar el poder predictivo:
+✅ Conclusión para Sweing: Los datos presentan una alta calidad y señal predictiva. Cualquiera de los dos modelos es viable, recomendándose el uso de GBR por su interpretabilidad y robustez en entornos de producción, o bien un modelo ensemble para maximizar el rendimiento.
 
-Ejemplos:
-theoretical_productivity: productividad esperada teórica.
-incentive_ratio: relación incentivo / horas extra.
-workload_per_worker: carga de trabajo por trabajador.
-workers_overtime_interaction: interacción entre trabajadores y horas extra.
+🧷 Departamento de Finishing (Acabado)
+Por el contrario, el departamento de Finishing presentó limitaciones estructurales significativas. A pesar de aplicar técnicas avanzadas de preprocesamiento, ingeniería de características y optimización mediante GridSearchCV, ningún modelo logró capturar relaciones relevantes entre las variables disponibles y la productividad real.
 
-Además:
-Conversión de fechas a formato numérico (ordinal_date).
-Limpieza de datos (NaN, columnas irrelevantes).
-3. Preprocesamiento
+Las posibles causas identificadas incluyen:
 
-Se usa un pipeline de sklearn:
+Baja variabilidad en las variables predictoras (ej. incentive prácticamente constante en cero).
 
-Numéricas:
-Imputación con mediana
-Escalado robusto (RobustScaler)
-Categóricas:
-Imputación por moda
-One-Hot Encoding
+Alta proporción de ruido con respecto a la señal útil.
 
-Esto asegura consistencia y evita data leakage.
+Posible falta de variables críticas no registradas en el conjunto de datos original (ej. eficiencia individual del operario, tiempos de espera no documentados, calidad del material).
 
-4. Eliminación de outliers
+⚠️ Conclusión para Finishing: Los datos disponibles son insuficientes o inadecuados para construir un modelo predictivo confiable. Se recomienda no implementar ninguno de los modelos evaluados en este departamento hasta contar con un rediseño del sistema de captura de datos operacionales.
 
-Se aplica:
-
-IsolationForest
-
-Para:
-
-Reducir ruido
-Mejorar la generalización del modelo
-5. Modelado
-
-Se implementan dos enfoques:
-
-🌳 Modelo basado en árboles
-GradientBoostingRegressor
-Optimizado con GridSearchCV (para finishing)
-🧠 Red neuronal (solo sewing)
-Arquitectura:
-Capas densas (64 → 32 → 16 → 1)
-Batch Normalization
-Regularización L2
-Función de pérdida: Huber
-Métrica: R²
-Callbacks:
-EarlyStopping
-ReduceLROnPlateau
-ModelCheckpoint
-6. Evaluación
-
-Se utilizan métricas:
-
-R² (coeficiente de determinación)
-MSE (error cuadrático medio)
-
-Se comparan:
-
-Entrenamiento vs test
-Modelos: Gradient Boosting vs Red Neuronal
-7. Visualización
-Curvas de entrenamiento:
-Loss
-R²
-Comparación de predicciones vs valores reales
