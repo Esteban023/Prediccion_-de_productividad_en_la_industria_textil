@@ -198,14 +198,14 @@ Here is the conclusion with the Sweing summary translated to English:
 
 ---
 
-<h1>📌 Conclusión Profesional del Estudio</h1>
+<h1>📌 Proffesional conclution </h1>
 <p>
 The present analysis aimed to model the actual productivity (<strong>actual_productivity</strong>)
 in two key departments of a textile plant: <strong>Sweing</strong> and <strong>Finishing</strong>.
 Two machine learning approaches will be implemented and compared: <strong>Gradient Boosting Regressor (GBR)</strong> and <strong>Neural Networks (NN)</strong>—in order to identify the most suitable model for each operational area.
 </p>
 <hr>
-<h2>🧵 Departamento de Sweing (Costura)</h2>
+<h2>🧵 Departament Sweing (Costura)</h2>
 <p>
 The results obtained in the Sweing department were <strong>highly satisfactory</strong>.
 Both models effectively captured the underlying variability of the data, as evidenced by
@@ -226,7 +226,7 @@ and robustness</strong> in production environments, or alternatively an <strong>
 performance.
 </p>
 <hr>
-<h2>🧷 Departamento de Finishing (Acabado)</h2>
+<h2>🧷 Departament Finishing (Acabado)</h2>
 <p>
 In contrast, the Finishing department presented <strong>significant structural limitations</strong>.
 Despite applying advanced preprocessing techniques, feature engineering, and optimization
