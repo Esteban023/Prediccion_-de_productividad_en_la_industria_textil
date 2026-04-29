@@ -1,3 +1,206 @@
+# Textile Productivity Prediction using Machine Learning
+
+## Overview
+
+This project focuses on predicting **worker productivity** in a textile manufacturing environment using supervised Machine Learning techniques.
+
+The goal is not only to build predictive models, but also to evaluate how **data quality and feature relevance** impact model performance across different operational areas.
+
+A key aspect of this project is the **separate analysis by department**, allowing us to identify structural differences in the data and their impact on predictive capability.
+
+---
+
+## Problem Statement
+
+The objective is to predict `actual_productivity`, a continuous variable representing the real efficiency of workers in a production setting.
+
+This is framed as a **regression problem**, where productivity is estimated based on operational features such as:
+
+* department
+* incentives
+* working conditions
+* workload and scheduling variables
+
+---
+
+## Dataset
+
+The dataset is sourced from the UCI Machine Learning Repository:
+
+https://archive.ics.uci.edu/ml/datasets/Productivity+Prediction+of+Garment+Employees
+
+It includes:
+
+* ~1200 observations
+* multiple operational features
+* target variable: `actual_productivity`
+
+The analysis is performed separately for:
+
+* **Sewing** (listed as `sweing` in the dataset)
+* **Finishing**
+
+---
+
+## Methodology
+
+### Data Preprocessing
+
+* Missing value imputation
+* Outlier handling
+* Encoding of categorical variables
+* Feature scaling
+
+### Feature Engineering
+
+Derived features were created to better capture operational dynamics, including:
+
+* theoretical productivity
+* workload per worker
+* incentive ratios
+* time per worker
+* style change rates
+
+### Models Implemented
+
+* Linear Regression (baseline)
+* Random Forest Regressor
+* Gradient Boosting Regressor
+
+---
+
+## Model Evaluation
+
+Models were evaluated using:
+
+* R² Score
+* Mean Absolute Error (MAE)
+* Root Mean Squared Error (RMSE)
+
+---
+
+## Results
+
+| Department | Model             | R²     | MAE    | RMSE   |
+| ---------- | ----------------- | ------ | ------ | ------ |
+| Finishing  | Random Forest     | 0.3220 | 0.1130 | 0.1506 |
+| Finishing  | Gradient Boosting | 0.2872 | 0.1155 | 0.1544 |
+| Finishing  | Linear Regression | 0.2753 | 0.1241 | 0.1557 |
+| Sewing     | Gradient Boosting | 0.8448 | 0.0349 | 0.0568 |
+| Sewing     | Random Forest     | 0.8433 | 0.0331 | 0.0571 |
+| Sewing     | Linear Regression | 0.7948 | 0.0448 | 0.0653 |
+
+### Key Observations
+
+* The **Sewing department** shows strong predictive performance, with Gradient Boosting achieving an R² of 0.8448
+* The **Finishing department** shows weaker performance, with the best model reaching 0.3220 R²
+* This indicates that predictive performance is strongly dependent on **data quality and feature variability**
+
+---
+
+## Visual Analysis
+
+### Predicted vs Actual (Sewing)
+
+![Sewing Predicted vs Actual](images/sewing_predicted_vs_actual.png)
+
+### Predicted vs Actual (Finishing)
+
+![Finishing Predicted vs Actual](images/finishing_predicted_vs_actual.png)
+
+### Residual Analysis (Sewing)
+
+![Sewing Residuals](images/sewing_residuals.png)
+
+### Residual Analysis (Finishing)
+
+![Finishing Residuals](images/finishing_residuals.png)
+
+### Feature Importance (Sewing)
+
+![Feature Importance Sewing](images/sewing_feature_importance.png)
+
+### Feature Importance (Finishing)
+
+![Feature Importance Finishing](images/finishing_feature_importance.png)
+
+### Finishing Productivity Distribution
+
+![Finishing Distribution](images/finishing_distribution.png)
+
+---
+
+## Explainability
+
+SHAP (SHapley Additive exPlanations) was used to interpret model behavior and identify key drivers of productivity.
+
+### SHAP Summary (Sewing)
+
+![SHAP Summary](images/sewing_shap_summary.png)
+
+---
+
+## Key Insights
+
+* Model performance depends heavily on **data quality**
+* The Sewing department contains strong predictive signals
+* The Finishing department lacks sufficient variability for accurate prediction
+* Not all business problems are solvable with Machine Learning if the data is not suitable
+
+---
+
+## Limitations
+
+* Limited feature variability in certain departments
+* Missing operational variables (e.g., worker-level efficiency)
+* Dataset constraints impact model performance
+
+---
+
+## Future Work
+
+* Add more operational features
+* Explore advanced ensemble methods
+* Improve data collection
+* Deploy the model as an API
+
+---
+
+## Project Structure
+
+data/
+notebooks/
+images/
+models/
+model_results.csv
+
+---
+
+## How to Run
+
+pip install -r requirements.txt
+
+Run the notebook in Google Colab or locally.
+
+---
+
+## Tech Stack
+
+* Python
+* Pandas, NumPy
+* Scikit-learn
+* SHAP
+* Matplotlib
+
+---
+
+## Conclusion
+
+This project demonstrates how to build and evaluate predictive models while also identifying when Machine Learning is limited by data quality.
+
+Understanding these limitations is critical when applying ML to real-world problems.
+
+
 <h1>📌 Conclusión Profesional del Estudio</h1>
 
 <p>
