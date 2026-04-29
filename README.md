@@ -1,255 +1,275 @@
-# Textile Productivity Prediction using Machine Learning
+<h1>Textile Productivity Prediction using Machine Learning</h1>
 
-## Overview
+<h2>Overview</h2>
 
-This project focuses on predicting **worker productivity** in a textile manufacturing environment using supervised Machine Learning techniques.
+<p>This project focuses on predicting <strong>worker productivity</strong> in a textile manufacturing environment using supervised Machine Learning techniques.</p>
 
-The goal is not only to build predictive models, but also to evaluate how **data quality and feature relevance** impact model performance across different operational areas.
+<p>The goal is not only to build predictive models, but also to evaluate how <strong>data quality and feature relevance</strong> impact model performance across different operational areas.</p>
 
-A key aspect of this project is the **separate analysis by department**, allowing us to identify structural differences in the data and their impact on predictive capability.
+<p>A key aspect of this project is the <strong>separate analysis by department</strong>, allowing us to identify structural differences in the data and their impact on predictive capability.</p>
 
----
+<hr />
 
-## Problem Statement
+<h2>Problem Statement</h2>
 
-The objective is to predict `actual_productivity`, a continuous variable representing the real efficiency of workers in a production setting.
+<p>The objective is to predict <code>actual_productivity</code>, a continuous variable representing the real efficiency of workers in a production setting.</p>
 
-This is framed as a **regression problem**, where productivity is estimated based on operational features such as:
+<p>This is framed as a <strong>regression problem</strong>, where productivity is estimated based on operational features such as:</p>
 
-* department
-* incentives
-* working conditions
-* workload and scheduling variables
+<ul>
+<li>department</li>
+<li>incentives</li>
+<li>working conditions</li>
+<li>workload and scheduling variables</li>
+</ul>
 
----
+<hr />
 
-## Dataset
+<h2>Dataset</h2>
 
-The dataset is sourced from the UCI Machine Learning Repository:
+<p>The dataset is sourced from the UCI Machine Learning Repository:</p>
 
-https://archive.ics.uci.edu/ml/datasets/Productivity+Prediction+of+Garment+Employees
+<p><a href="https://archive.ics.uci.edu/ml/datasets/Productivity+Prediction+of+Garment+Employees">https://archive.ics.uci.edu/ml/datasets/Productivity+Prediction+of+Garment+Employees</a></p>
 
-It includes:
+<p>It includes:</p>
+
+<ul>
+<li>~1200 observations</li>
+<li>multiple operational features</li>
+<li>target variable: <code>actual_productivity</code></li>
+</ul>
+
+<p>The analysis is performed separately for:</p>
+
+<ul>
+<li><strong>Sewing</strong> (listed as <code>sweing</code> in the dataset)</li>
+<li><strong>Finishing</strong></li>
+</ul>
+
+<hr />
+
+<h2>Methodology</h2>
+
+<h3>Data Preprocessing</h3>
+
+<ul>
+<li>Missing value imputation</li>
+<li>Outlier handling</li>
+<li>Encoding of categorical variables</li>
+<li>Feature scaling</li>
+</ul>
+
+<h3>Feature Engineering</h3>
+
+<p>Derived features were created to better capture operational dynamics, including:</p>
+
+<ul>
+<li>theoretical productivity</li>
+<li>workload per worker</li>
+<li>incentive ratios</li>
+<li>time per worker</li>
+<li>style change rates</li>
+</ul>
+
+<h3>Models Implemented</h3>
+
+<ul>
+<li>Linear Regression (baseline)</li>
+<li>Random Forest Regressor</li>
+<li>Gradient Boosting Regressor</li>
+</ul>
 
-* ~1200 observations
-* multiple operational features
-* target variable: `actual_productivity`
+<hr />
 
-The analysis is performed separately for:
+<h2>Model Evaluation</h2>
 
-* **Sewing** (listed as `sweing` in the dataset)
-* **Finishing**
+<p>Models were evaluated using:</p>
 
----
+<ul>
+<li>R² Score</li>
+<li>Mean Absolute Error (MAE)</li>
+<li>Root Mean Squared Error (RMSE)</li>
+</ul>
 
-## Methodology
+<hr />
 
-### Data Preprocessing
+<h2>Results</h2>
 
-* Missing value imputation
-* Outlier handling
-* Encoding of categorical variables
-* Feature scaling
+<table>
+<thead>
+<tr>
+<th>Department</th>
+<th>Model</th>
+<th>R²</th>
+<th>MAE</th>
+<th>RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finishing</td>
+<td>Random Forest</td>
+<td>0.3220</td>
+<td>0.1130</td>
+<td>0.1506</td>
+</tr>
+<tr>
+<td>Finishing</td>
+<td>Gradient Boosting</td>
+<td>0.2872</td>
+<td>0.1155</td>
+<td>0.1544</td>
+</tr>
+<tr>
+<td>Finishing</td>
+<td>Linear Regression</td>
+<td>0.2753</td>
+<td>0.1241</td>
+<td>0.1557</td>
+</tr>
+<tr>
+<td>Sweing</td>
+<td>Gradient Boosting</td>
+<td>0.8448</td>
+<td>0.0349</td>
+<td>0.0568</td>
+</tr>
+<tr>
+<td>Sweing</td>
+<td>Random Forest</td>
+<td>0.8433</td>
+<td>0.0331</td>
+<td>0.0571</td>
+</tr>
+<tr>
+<td>Sweing</td>
+<td>Linear Regression</td>
+<td>0.7948</td>
+<td>0.0448</td>
+<td>0.0653</td>
+</tr>
+</tbody>
+</table>
 
-### Feature Engineering
+<h3>Key Observations</h3>
 
-Derived features were created to better capture operational dynamics, including:
+<ul>
+<li>The <strong>Sweing department</strong> shows strong predictive performance, with Gradient Boosting achieving an R² of 0.8448</li>
+<li>The <strong>Finishing department</strong> shows weaker performance, with the best model reaching 0.3220 R²</li>
+<li>This indicates that predictive performance is strongly dependent on <strong>data quality and feature variability</strong></li>
+</ul>
 
-* theoretical productivity
-* workload per worker
-* incentive ratios
-* time per worker
-* style change rates
+<hr />
 
-### Models Implemented
+<h2>Visual Analysis</h2>
 
-* Linear Regression (baseline)
-* Random Forest Regressor
-* Gradient Boosting Regressor
+<h3>Predicted vs Actual (Sewing)</h3>
 
----
+<p><img src="images/sewing_predicted_vs_actual.png" alt="Sewing Predicted vs Actual" /></p>
 
-## Model Evaluation
+<h3>Predicted vs Actual (Finishing)</h3>
 
-Models were evaluated using:
+<p><img src="images/finishing_predicted_vs_actual.png" alt="Finishing Predicted vs Actual" /></p>
 
-* R² Score
-* Mean Absolute Error (MAE)
-* Root Mean Squared Error (RMSE)
+<h3>Residual Analysis (Sewing)</h3>
 
----
+<p><img src="images/sewing_residuals.png" alt="Sewing Residuals" /></p>
 
-## Results
+<h3>Residual Analysis (Finishing)</h3>
 
-| Department | Model             | R²     | MAE    | RMSE   |
-| ---------- | ----------------- | ------ | ------ | ------ |
-| Finishing  | Random Forest     | 0.3220 | 0.1130 | 0.1506 |
-| Finishing  | Gradient Boosting | 0.2872 | 0.1155 | 0.1544 |
-| Finishing  | Linear Regression | 0.2753 | 0.1241 | 0.1557 |
-| Sewing     | Gradient Boosting | 0.8448 | 0.0349 | 0.0568 |
-| Sewing     | Random Forest     | 0.8433 | 0.0331 | 0.0571 |
-| Sewing     | Linear Regression | 0.7948 | 0.0448 | 0.0653 |
+<p><img src="images/finishing_residuals.png" alt="Finishing Residuals" /></p>
 
-### Key Observations
+<h3>Feature Importance (Sewing)</h3>
 
-* The **Sewing department** shows strong predictive performance, with Gradient Boosting achieving an R² of 0.8448
-* The **Finishing department** shows weaker performance, with the best model reaching 0.3220 R²
-* This indicates that predictive performance is strongly dependent on **data quality and feature variability**
+<p><img src="images/sewing_feature_importance.png" alt="Feature Importance Sewing" /></p>
 
----
+<h3>Feature Importance (Finishing)</h3>
 
-## Visual Analysis
+<p><img src="images/finishing_feature_importance.png" alt="Feature Importance Finishing" /></p>
 
-### Predicted vs Actual (Sewing)
+<h3>Finishing Productivity Distribution</h3>
 
-![Sewing Predicted vs Actual](images/sewing_predicted_vs_actual.png)
+<p><img src="images/finishing_distribution.png" alt="Finishing Distribution" /></p>
 
-### Predicted vs Actual (Finishing)
+<hr />
 
-![Finishing Predicted vs Actual](images/finishing_predicted_vs_actual.png)
+<h2>Explainability</h2>
 
-### Residual Analysis (Sewing)
+<p>SHAP (SHapley Additive exPlanations) was used to interpret model behavior and identify key drivers of productivity.</p>
 
-![Sewing Residuals](images/sewing_residuals.png)
+<h3>SHAP Summary (Sewing)</h3>
 
-### Residual Analysis (Finishing)
+<p><img src="images/sewing_shap_summary.png" alt="SHAP Summary" /></p>
 
-![Finishing Residuals](images/finishing_residuals.png)
+<hr />
 
-### Feature Importance (Sewing)
+<h2>Key Insights</h2>
 
-![Feature Importance Sewing](images/sewing_feature_importance.png)
+<ul>
+<li>Model performance depends heavily on <strong>data quality</strong></li>
+<li>The Sewing department contains strong predictive signals</li>
+<li>The Finishing department lacks sufficient variability for accurate prediction</li>
+<li>Not all business problems are solvable with Machine Learning if the data is not suitable</li>
+</ul>
 
-### Feature Importance (Finishing)
+<hr />
 
-![Feature Importance Finishing](images/finishing_feature_importance.png)
+<h2>Limitations</h2>
 
-### Finishing Productivity Distribution
+<ul>
+<li>Limited feature variability in certain departments</li>
+<li>Missing operational variables (e.g., worker-level efficiency)</li>
+<li>Dataset constraints impact model performance</li>
+</ul>
 
-![Finishing Distribution](images/finishing_distribution.png)
+<hr />
 
----
+<h2>Future Work</h2>
 
-## Explainability
+<ul>
+<li>Add more operational features</li>
+<li>Explore advanced ensemble methods</li>
+<li>Improve data collection</li>
+<li>Deploy the model as an API</li>
+</ul>
 
-SHAP (SHapley Additive exPlanations) was used to interpret model behavior and identify key drivers of productivity.
+<hr />
 
-### SHAP Summary (Sewing)
+<h2>Project Structure</h2>
 
-![SHAP Summary](images/sewing_shap_summary.png)
-
----
-
-## Key Insights
-
-* Model performance depends heavily on **data quality**
-* The Sewing department contains strong predictive signals
-* The Finishing department lacks sufficient variability for accurate prediction
-* Not all business problems are solvable with Machine Learning if the data is not suitable
-
----
-
-## Limitations
-
-* Limited feature variability in certain departments
-* Missing operational variables (e.g., worker-level efficiency)
-* Dataset constraints impact model performance
-
----
-
-## Future Work
-
-* Add more operational features
-* Explore advanced ensemble methods
-* Improve data collection
-* Deploy the model as an API
-
----
-
-## Project Structure
-
-data/
+<pre><code>data/
 notebooks/
 images/
 models/
 model_results.csv
+</code></pre>
 
----
+<hr />
 
-## How to Run
+<h2>How to Run</h2>
 
-pip install -r requirements.txt
+<pre><code>pip install -r requirements.txt
+</code></pre>
 
-Run the notebook in Google Colab or locally.
+<p>Run the notebook in Google Colab or locally.</p>
 
----
+<hr />
 
-## Tech Stack
+<h2>Tech Stack</h2>
 
-* Python
-* Pandas, NumPy
-* Scikit-learn
-* SHAP
-* Matplotlib
-
----
-
-Here is the conclusion with the Sweing summary translated to English:
-
----
-
-<h1>📌 Proffesional conclution </h1>
-<p>
-The present analysis aimed to model the actual productivity (<strong>actual_productivity</strong>)
-in two key departments of a textile plant: <strong>Sweing</strong> and <strong>Finishing</strong>.
-Two machine learning approaches will be implemented and compared: <strong>Gradient Boosting Regressor (GBR)</strong> and <strong>Neural Networks (NN)</strong>—in order to identify the most suitable model for each operational area.
-</p>
-<hr>
-<h2>🧵 Departament Sweing (Costura)</h2>
-<p>
-The results obtained in the Sweing department were <strong>highly satisfactory</strong>.
-Both models effectively captured the underlying variability of the data, as evidenced by
-strong and stable performance metrics:
-</p>
-<p>
-<strong>Gradient Boosting Regressor</strong> demonstrated an excellent balance between bias and variance,
-with high predictive capacity and good generalization.
-</p>
-<p>
-<strong>Neural Network</strong> also achieved competitive performance, although with slightly greater
-sensitivity to hyperparameter configuration and preprocessing.
-</p>
-<p>
-✅ <strong>Conclusion for Sweing:</strong> The data presents <strong>high quality and predictive signal</strong>.
-Either model is viable; the use of <strong>GBR is recommended for its interpretability
-and robustness</strong> in production environments, or alternatively an <strong>ensemble model</strong> to maximize
-performance.
-</p>
-<hr>
-<h2>🧷 Departament Finishing (Acabado)</h2>
-<p>
-In contrast, the Finishing department presented <strong>significant structural limitations</strong>.
-Despite applying advanced preprocessing techniques, feature engineering, and optimization
-via <code>GridSearchCV</code>, no model was able to capture relevant relationships between the available
-variables and actual productivity.
-</p>
-<p><strong>The possible causes identified include:</strong></p>
 <ul>
-    <li><strong>Low variability</strong> in predictor variables (e.g. <code>incentive</code> practically constant at zero).</li>
-    <li><strong>High proportion of noise</strong> relative to the useful signal.</li>
-    <li><strong>Possible lack of critical variables</strong> not recorded in the original dataset
-        (e.g. individual operator efficiency, undocumented waiting times, material quality).</li>
+<li>Python</li>
+<li>Pandas, NumPy</li>
+<li>Scikit-learn</li>
+<li>SHAP</li>
+<li>Matplotlib</li>
 </ul>
-<p>
-⚠️ <strong>Conclusion for Finishing:</strong> The available data is <strong>insufficient or inadequate</strong>
-to build a reliable predictive model. It is recommended <strong>not to deploy</strong> any of the evaluated models in this department until a <strong>redesign of the operational data capture system</strong> is in place.
-</p>
-<hr>
-<h3>📊 Executive Summary</h3>
-<p>
-<strong>Sweing:</strong> High-quality data. Successful predictive models (R² > 0.7). Recommendation: Deploy GBR in production.<br>
-<strong>Finishing:</strong> Limitaciones estructurales. Sin capacidad predictiva. Recomendación: Auditoría y rediseño del sistema de captura de datos.
-</p>
 
-</body>
-</html>
+<hr />
+
+<h2>📌 Conclusion</h2>
+
+<p>The analysis confirms that the Sewing department yields robust predictive performance (R² up to 0.8448 with Gradient Boosting), driven by meaningful operational signals and adequate feature variability. In contrast, the Finishing department shows limited predictability (best R² 0.3220), highlighting that data quality and feature richness are critical for successful machine learning applications. These findings underscore that not every business problem is equally solvable with ML; domain-specific data assessments are essential before deploying predictive models.</p>
+
+
+
