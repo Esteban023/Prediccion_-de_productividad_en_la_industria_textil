@@ -159,40 +159,6 @@
 <li>This indicates that predictive performance is strongly dependent on <strong>data quality and feature variability</strong></li>
 </ul>
 
-<hr />
-
-<h2>Visual Analysis</h2>
-
-<h3>Predicted vs Actual (Sewing)</h3>
-
-<p><img src="images/sewing_predicted_vs_actual.png" alt="Sewing Predicted vs Actual" /></p>
-
-<h3>Predicted vs Actual (Finishing)</h3>
-
-<p><img src="images/finishing_predicted_vs_actual.png" alt="Finishing Predicted vs Actual" /></p>
-
-<h3>Residual Analysis (Sewing)</h3>
-
-<p><img src="images/sewing_residuals.png" alt="Sewing Residuals" /></p>
-
-<h3>Residual Analysis (Finishing)</h3>
-
-<p><img src="images/finishing_residuals.png" alt="Finishing Residuals" /></p>
-
-<h3>Feature Importance (Sewing)</h3>
-
-<p><img src="images/sewing_feature_importance.png" alt="Feature Importance Sewing" /></p>
-
-<h3>Feature Importance (Finishing)</h3>
-
-<p><img src="images/finishing_feature_importance.png" alt="Feature Importance Finishing" /></p>
-
-<h3>Finishing Productivity Distribution</h3>
-
-<p><img src="images/finishing_distribution.png" alt="Finishing Distribution" /></p>
-
-<hr />
-
 <h2>Explainability</h2>
 
 <p>SHAP (SHapley Additive exPlanations) was used to interpret model behavior and identify key drivers of productivity.</p>
